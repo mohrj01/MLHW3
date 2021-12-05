@@ -173,4 +173,11 @@ embeddings = model.encode(corpus)
 
 #%%
 
+with open("corpus.pkl" , "wb") as file1:
+  pkl.dump(corpus,file1)
 
+with open("corpus_embeddings.pkl" , "wb") as file2:
+  pkl.dump(corpus_embeddings,file2)
+
+with open("df.pkl" , "wb") as file3:
+  pkl.dump(df,file3)
