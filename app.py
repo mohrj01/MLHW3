@@ -82,49 +82,4 @@ queries = ['Hotel closest to bridge',
            ]
 
 
-# Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
-top_k = min(5, len(corpus))
-for query in queries:
-    query_embedding = embedder.encode(query, convert_to_tensor=True)
 
-    # We use cosine-similarity and torch.topk to find the highest 5 scores
-    cos_scores = util.pytorch_cos_sim(query_embedding, corpus_embeddings)[0]
-    top_results = torch.topk(cos_scores, k=top_k)
-
-    print("\n\n======================\n\n")
-    print("Query:", query)
-    print("\nTop 5 most similar sentences in corpus:")
-
-    for score, idx in zip(top_results[0], top_results[1]):
-        print("(Score: {:.4f})".format(score))
-        print(corpus[idx], "(Score: {:.4f})".format(score))
-        row_dict = df.loc[df['all_review']== corpus[idx]]
-        print("paper_id:  " , row_dict['hotelName'] , "\n")
-    # for idx, distance in results[0:closest_n]:
-    #     print("Score:   ", "(Score: %.4f)" % (1-distance) , "\n" )
-    #     print("Paragraph:   ", corpus[idx].strip(), "\n" )
-    #     row_dict = df.loc[df['all_review']== corpus[idx]]
-    #     print("paper_id:  " , row_dict['Hotel'] , "\n")
-    """
-    # Alternatively, we can also use util.semantic_search to perform cosine similarty + topk
-    hits = util.semantic_search(query_embedding, corpus_embeddings, top_k=5)
-    hits = hits[0]      #Get the hits for the first query
-    for hit in hits:
-        print(corpus[hit['corpus_id']], "(Score: {:.4f})".format(hit['score']))
-    """
-
-
-#%%
-
-model = SentenceTransformer('sentence-transformers/paraphrase-xlm-r-multilingual-v1')
-embeddings = model.encode(corpus)
-#embedder = SentenceTransformer('all-MiniLM-L6-v2')
-#model = SentenceTransformer('all-MiniLM-L6-v2')
-#corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
-    
-#print(df.head())
-#st.write(df.head())
-#st.table(df)
-
-#st.table(corpus)
-st.write(corpus_embeddings)
