@@ -1,7 +1,9 @@
 import streamlit as st
 import pickle as pkl
 
-with open('corpus.pkl', 'rb') as file1:
-    corpus = pkl.load(file1)
+with open('df.pkl', 'rb') as file1:
+    df = pkl.load(file1)
     
-st.write("test")
+print(df.head())
+#st.write(df.head())
+st.table(df)
