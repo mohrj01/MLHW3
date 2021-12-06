@@ -23,7 +23,10 @@ with open('corpus_embeddings.pkl', 'rb') as file2:
     corpus_embeddings = pkl.load(file2)
 with open('corpus.pkl', 'rb') as file1:
     corpus = pkl.load(file1)
-    
+ 
+
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('all-MiniLM-L6-v2')
 corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
     
 print(df.head())
