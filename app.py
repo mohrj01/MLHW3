@@ -16,6 +16,7 @@ from string import punctuation
 import re
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer, util
+import scipy
 
 with open("df.pkl" , "rb") as file3:
     df = pkl.load(file3)
