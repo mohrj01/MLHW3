@@ -84,3 +84,4 @@ queries = ['Hotel closest to bridge',
 
 
 
+st.write("hi")
