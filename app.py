@@ -34,4 +34,4 @@ with open('corpus.pkl', 'rb') as file1:
 #st.table(df)
 
 #st.table(corpus)
-st.table(corpus_embeddings)
+st.write(corpus_embeddings)
