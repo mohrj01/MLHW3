@@ -25,7 +25,10 @@ with open('corpus.pkl', 'rb') as file1:
     corpus = pkl.load(file1)
  
 
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
 model = SentenceTransformer('all-MiniLM-L6-v2')
+
+
 paraphrases = util.paraphrase_mining(model, corpus)
 #query_embeddings_p =  util.paraphrase_mining(model, queries,show_progress_bar=True)
 
