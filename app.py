@@ -29,7 +29,7 @@ embedder = SentenceTransformer('all-MiniLM-L6-v2')
 model = SentenceTransformer('all-MiniLM-L6-v2')
 corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
     
-print(df.head())
+#print(df.head())
 #st.write(df.head())
 st.table(df)
 
