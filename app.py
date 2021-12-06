@@ -32,6 +32,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 #print(df.head())
 #st.write(df.head())
 #st.table(df)
-
+sp = df.shape()
+st.write(sp)
 st.table(corpus)
 st.table(corpus_embeddings)
