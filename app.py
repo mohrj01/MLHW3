@@ -1,5 +1,21 @@
 import streamlit as st
 import pickle as pkl
+import numpy as np
+import pandas as pd
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from collections import Counter
+from heapq import nlargest
+import os
+import spacy
+nlp = spacy.load("en_core_web_sm")
+from spacy import displacy
+stopwords=list(STOP_WORDS)
+from string import punctuation
+import re
+from tqdm import tqdm
+from sentence_transformers import SentenceTransformer, util
 
 with open("df.pkl" , "rb") as file3:
     df = pkl.load(file3)
