@@ -31,7 +31,7 @@ corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
     
 #print(df.head())
 #st.write(df.head())
-st.table(df)
+#st.table(df)
 
 st.table(corpus)
 st.table(corpus_embeddings)
