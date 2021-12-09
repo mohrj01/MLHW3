@@ -106,14 +106,6 @@ for query in queries:
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
         st.write("paper_id:  " , row_dict['hotelName'] , "\n")
-    # for idx, distance in results[0:closest_n]:
-    #     print("Score:   ", "(Score: %.4f)" % (1-distance) , "\n" )
-    #     print("Paragraph:   ", corpus[idx].strip(), "\n" )
-    #     row_dict = df.loc[df['all_review']== corpus[idx]]
-    #     print("paper_id:  " , row_dict['Hotel'] , "\n")
-    """
-    # Alternatively, we can also use util.semantic_search to perform cosine similarty + topk
-    hits = util.semantic_search(query_embedding, corpus_embeddings, top_k=5)
-    hits = hits[0]      #Get the hits for the first query
-    for hit in hits:
-        print(corpus[hit['corpus_id']], "(Score: {:.4f})".format(hit['score']))
+
+
+
