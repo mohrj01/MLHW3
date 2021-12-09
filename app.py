@@ -114,7 +114,7 @@ for query in queries:
 
 
         
- def myreplace(s):
+def myreplace(s):
     for ch in ['Name: hotel_name, dtype: object']:
         s = s.replace(ch, '')
 
