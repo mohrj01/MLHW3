@@ -111,7 +111,7 @@ for query in queries:
         for i in row_dict['hotelName']:
             l.append(i)
         st.write(l[0])
-        l[0] = l[0].str.replace(" Name: hotel_name, dtype: object", "")
+        l[0] = l[0].replace(" Name: hotel_name, dtype: object", "")
         st.write(l[0])
 
 
