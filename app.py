@@ -123,7 +123,7 @@ def myreplace(s):
     return s
 
 df['hotelName'] = df['hotelName'].map(myreplace)
-df2['HotelName'] = df2["Unnamed: 0"].astype(str)+ " " + df2["hotel_name"]
+df2['hotelName'] = df2["Unnamed: 0"].astype(str)+ " " + df2["hotel_name"]
 df3 = pd.merge(df,df2)
 
 st.table(df.head(1))
