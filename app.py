@@ -8,16 +8,15 @@ from string import punctuation
 from collections import Counter
 from heapq import nlargest
 import os
-import spacy
 nlp = spacy.load("en_core_web_sm")
 from spacy import displacy
-stopwords=list(STOP_WORDS)
-from string import punctuation
 import re
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer, util
 import scipy
 import torch
+from wordcloud import WordCloud, STOPWORDS
+import matplotlib.pyplot as plt
 
 with open("df.pkl" , "rb") as file3:
     df = pkl.load(file3)
