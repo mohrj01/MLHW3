@@ -129,9 +129,8 @@ for query in queries:
             l.append(i)
         #l[0] = l[0].replace("Name: hotel_name, dtype: object", "")
         st.write("Hotel Name: ", l[0])
-        st.write(row_dict)
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
-        #st.write("Price Per Night: ", row_dict['price_per_night'][0])
+        st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         st.write("\n\n======================\n\n")
 
 
