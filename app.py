@@ -86,3 +86,32 @@ queries = ['Hotel closest to bridge',
 
 st.write("hi")
 user_input = st.text_input("What type of hotel are you searching for?", value="")
+
+query = user_input
+query_embeddings = embedder.encode(user_input,show_progress_bar=True)
+
+
+
+closest_n = 5
+print("\nTop 5 most similar sentences in corpus:")
+for query, query_embedding in zip(queries, query_embeddings):
+    distances = scipy.spatial.distance.cdist([query_embedding], corpus_embeddings, "cosine")[0]
+
+    results = zip(range(len(distances)), distances)
+    results = sorted(results, key=lambda x: x[1])
+
+    st.write("\n\n=========================================================")
+    st.write("==========================Query==============================")
+    st.write("===",query,"=====")
+    st.write("=========================================================")
+
+
+    for idx, distance in results[0:closest_n]:
+        st.write("Score:   ", "(Score: %.4f)" % (1-distance) , "\n" )
+        st.write("Paragraph:   ", corpus[idx].strip(), "\n" )
+        row_dict = df.loc[df['all_review']== corpus[idx]]
+        st.write("paper_id:  " , row_dict['hotelName'] , "\n")
+        # print("Title:  " , row_dict["title"][corpus[idx]] , "\n")
+        # print("Abstract:  " , row_dict["abstract"][corpus[idx]] , "\n")
+        # print("Abstract_Summary:  " , row_dict["abstract_summary"][corpus[idx]] , "\n")
+        st.write("-------------------------------------------")
