@@ -106,7 +106,7 @@ for query in queries:
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
-        st.write("Hotel Name:  " , row_dict['hotelName'].values[0].str.replace(" Name: hotel_name, dtype: object", ""), "\n")
+        st.write("Hotel Name:  " , row_dict['hotelName'].values[0].replace(" Name: hotel_name, dtype: object", ""), "\n")
 
 
 
