@@ -90,28 +90,31 @@ user_input = st.text_input("What type of hotel are you searching for?", value=""
 queries = [str(user_input)]
 query_embeddings = embedder.encode(user_input,show_progress_bar=True)
 
+top_k = min(5, len(corpus))
+for query in queries:
+    query_embedding = embedder.encode(query, convert_to_tensor=True)
 
+    # We use cosine-similarity and torch.topk to find the highest 5 scores
+    cos_scores = util.pytorch_cos_sim(query_embedding, corpus_embeddings)[0]
+    top_results = torch.topk(cos_scores, k=top_k)
 
-closest_n = 5
-print("\nTop 5 most similar sentences in corpus:")
-for query, query_embedding in zip(queries, query_embeddings):
-    distances = scipy.spatial.distance.cdist([query_embedding], corpus_embeddings, "cosine")[0]
+    st.write("\n\n======================\n\n")
+    st.write("Query:", query)
+    st.write("\nTop 5 most similar sentences in corpus:")
 
-    results = zip(range(len(distances)), distances)
-    results = sorted(results, key=lambda x: x[1])
-
-    st.write("\n\n=========================================================")
-    st.write("==========================Query==============================")
-    st.write("===",query,"=====")
-    st.write("=========================================================")
-
-
-    for idx, distance in results[0:closest_n]:
-        st.write("Score:   ", "(Score: %.4f)" % (1-distance) , "\n" )
-        st.write("Paragraph:   ", corpus[idx].strip(), "\n" )
+    for score, idx in zip(top_results[0], top_results[1]):
+        st.write("(Score: {:.4f})".format(score))
+        st.write(corpus[idx], "(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
         st.write("paper_id:  " , row_dict['hotelName'] , "\n")
-        # print("Title:  " , row_dict["title"][corpus[idx]] , "\n")
-        # print("Abstract:  " , row_dict["abstract"][corpus[idx]] , "\n")
-        # print("Abstract_Summary:  " , row_dict["abstract_summary"][corpus[idx]] , "\n")
-        st.write("-------------------------------------------")
+    # for idx, distance in results[0:closest_n]:
+    #     print("Score:   ", "(Score: %.4f)" % (1-distance) , "\n" )
+    #     print("Paragraph:   ", corpus[idx].strip(), "\n" )
+    #     row_dict = df.loc[df['all_review']== corpus[idx]]
+    #     print("paper_id:  " , row_dict['Hotel'] , "\n")
+    """
+    # Alternatively, we can also use util.semantic_search to perform cosine similarty + topk
+    hits = util.semantic_search(query_embedding, corpus_embeddings, top_k=5)
+    hits = hits[0]      #Get the hits for the first query
+    for hit in hits:
+        print(corpus[hit['corpus_id']], "(Score: {:.4f})".format(hit['score']))
