@@ -85,7 +85,7 @@ queries = ['Hotel closest to bridge',
 
 
 st.header("Prague Hotel Finder")
-st.write("Jessica Mohr | MABA ML HW3" | [Github](%s)" % "https://github.com/mohrj01/MLHW3"))
+st.write("Jessica Mohr | MABA ML HW3 | [Github](%s)" % "https://github.com/mohrj01/MLHW3"))
 user_input = st.text_input("What type of hotel are you searching for?", value="")
 
 queries = [str(user_input)]
@@ -106,7 +106,7 @@ for query in queries:
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
-        st.write("paper_id:  " , row_dict['hotelName'] , "\n")
+        st.write("hotel Name:  " , row_dict['hotelName'] , "\n")
 
 
 
