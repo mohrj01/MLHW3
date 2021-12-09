@@ -115,7 +115,7 @@ for query in queries:
 
         
 def myreplace(s):
-    for ch in ['Name: hotel_name, dtype: object']:
+    for ch in [' Name: hotel_name, dtype: object']:
         s = s.replace(ch, '')
 
     # remove extra spaces
