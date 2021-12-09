@@ -114,4 +114,5 @@ for query in queries:
         st.write("\n\n======================\n\n")
 
 
+st.table(df.head())
 
