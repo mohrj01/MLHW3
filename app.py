@@ -113,5 +113,16 @@ for query in queries:
         st.write("\n\n======================\n\n")
 
 
-st.table(df.head())
-st.table(df2.head())
+        
+ def myreplace(s):
+    for ch in ['Name: hotel_name, dtype: object']:
+        s = s.replace(ch, '')
+
+    # remove extra spaces
+    s = re.sub(' +', ' ', s)
+    return s
+
+df['hotelName'] = df1['hotelName'].map(myreplace)
+
+st.table(df.head(1))
+st.table(df2.head(1))
