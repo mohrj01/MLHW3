@@ -53,7 +53,7 @@ query_embeddings = embedder.encode(user_input,show_progress_bar=True)
 
 # add other useless words to stop words list
 stop_words=list(STOP_WORDS)+['hotel', 'Hotel', 'Prague', 'stay']
-#punctuation=punctuation+ '\n'
+
 # define word cloud
 def plot_cloud(wordcloud):
     plt.figure()
