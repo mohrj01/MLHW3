@@ -59,8 +59,8 @@ user_input = st.text_input("What type of hotel are you searching for?", value=""
 queries = [str(user_input)]
 query_embeddings = embedder.encode(user_input,show_progress_bar=True)
 
-
-stop_words=list(STOP_WORDS)
+# add other useless words to stop words list
+stop_words=list(STOP_WORDS)+['hotel', 'Hotel', 'Prague', 'stay']
 punctuation=punctuation+ '\n'
 def plot_cloud(wordcloud):
     plt.figure()
@@ -89,8 +89,6 @@ for query in queries:
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
-        st.write("\n\n======================\n\n")
-        
         
         wordcloud = WordCloud(stopwords = stop_words).generate(corpus[idx])
         fig, ax = plt.subplots()
@@ -99,6 +97,8 @@ for query in queries:
         plt.show()
         st.pyplot(fig)
         st.set_option('deprecation.showPyplotGlobalUse', False)
+        
+        st.write("\n\n======================\n\n")
 
 
 
