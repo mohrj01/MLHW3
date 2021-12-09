@@ -107,6 +107,12 @@ for query in queries:
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
         st.write("Hotel Name:  " , row_dict['hotelName'].values[0].replace(" Name: hotel_name, dtype: object", ""), "\n")
+        l=[]
+        for i in row_dict['hotelName']:
+        l.append(i)
+        st.write(l)
+        l = l.str.replace(" Name: hotel_name, dtype: object", "")
+        st.write(l)
 
 
 
