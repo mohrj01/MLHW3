@@ -104,7 +104,6 @@ for query in queries:
 
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
-        st.write(corpus[idx], "(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
         st.write("paper_id:  " , row_dict['hotelName'] , "\n")
     # for idx, distance in results[0:closest_n]:
