@@ -14,7 +14,7 @@ import re
 #from tqdm import tqdm
 from sentence_transformers import SentenceTransformer, util
 #import scipy
-#import torch
+import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
