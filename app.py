@@ -85,3 +85,4 @@ queries = ['Hotel closest to bridge',
 
 
 st.write("hi")
+user_input = st.text_input("What type of hotel are you searching for?", value="")
