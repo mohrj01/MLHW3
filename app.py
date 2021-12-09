@@ -109,7 +109,6 @@ for query in queries:
         l=[]
         for i in row_dict['hotelName']:
             l.append(i)
-        st.write(l[0])
         l[0] = l[0].replace("Name: hotel_name, dtype: object", "")
         st.write(l[0])
         st.write("\n\n======================\n\n")
