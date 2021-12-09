@@ -5,16 +5,16 @@ import pandas as pd
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
-from collections import Counter
-from heapq import nlargest
-import os
+#from collections import Counter
+#from heapq import nlargest
+#import os
 nlp = spacy.load("en_core_web_sm")
-from spacy import displacy
+#from spacy import displacy
 import re
-from tqdm import tqdm
+#from tqdm import tqdm
 from sentence_transformers import SentenceTransformer, util
-import scipy
-import torch
+#import scipy
+#import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
