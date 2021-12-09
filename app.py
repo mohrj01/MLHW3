@@ -122,7 +122,7 @@ def myreplace(s):
     s = re.sub(' +', ' ', s)
     return s
 
-df['hotelName'] = df1['hotelName'].map(myreplace)
+df['hotelName'] = df['hotelName'].map(myreplace)
 
 st.table(df.head(1))
 st.table(df2.head(1))
