@@ -81,13 +81,11 @@ for query in queries:
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
-        st.write("Paragraph:   ", corpus[idx].strip(), "\n" )
         # create word cloud
         wordcloud = WordCloud(stopwords = stop_words).generate(corpus[idx])
         fig, ax = plt.subplots()
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
-        plt.show()
         st.pyplot(fig)
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.write("\n\n======================\n\n")
