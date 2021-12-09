@@ -129,3 +129,6 @@ df3 = pd.merge(df,df2)
 st.table(df.head(1))
 st.table(df2.head(1))
 st.table(df3.head(1))
+
+st.write(len(df['hotelName'][0]))
+st.write(len(df2['hotelName'][0]))
