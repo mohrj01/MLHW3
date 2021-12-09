@@ -26,6 +26,25 @@ with open('corpus.pkl', 'rb') as file1:
     corpus = pkl.load(file1)
  
 
+df2 = pd.read_csv('https://raw.githubusercontent.com/mohrj01/MLHW3/master/HotelListInPrague.csv')
+df['hotelName'] = df['hotelName'].str.replace('\d+', '')
+def myreplace(s):
+    for ch in ['Name: hotel_name, dtype: object']:
+        s = s.replace(ch, '')
+
+    # remove extra spaces
+    s = re.sub(' +', ' ', s)
+    s = s.rstrip().lstrip()
+    return s
+
+df['hotelName'] = df['hotelName'].map(myreplace)
+df2['hotelName'] = df2['hotel_name']
+
+df = pd.merge(df,df2)
+
+
+
+
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -78,7 +97,7 @@ corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 #%%
 
 # Query sentences:
-df2 = pd.read_csv('https://raw.githubusercontent.com/mohrj01/MLHW3/master/HotelListInPrague.csv')
+
 
 
 
@@ -105,6 +124,7 @@ for query in queries:
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
+        st.write("Hotel Name:  " , row_dict['hotelName'] , "\n")
         l=[]
         for i in row_dict['hotelName']:
             l.append(i)
@@ -114,33 +134,14 @@ for query in queries:
 
 
 
-df['hotelName'] = df['hotelName'].str.replace('\d+', '')
-def myreplace(s):
-    for ch in ['Name: hotel_name, dtype: object']:
-        s = s.replace(ch, '')
-
-    # remove extra spaces
-    s = re.sub(' +', ' ', s)
-    s = s.rstrip().lstrip()
-    return s
-
-df['hotelName'] = df['hotelName'].map(myreplace)
-df2['hotelName'] = df2['hotel_name']
-
-#df2['hotelName'] = df2["Unnamed: 0"].astype(str)+ " " + df2["hotel_name"]
 
 
-st.table(df.head(1))
-st.table(df2.head(1))
 
-df3 = pd.merge(df,df2)
-st.table(df3.head(1))
+#st.write(len(df['hotelName'][0]))
+#st.write(len(df2['hotelName'][0]))
 
-st.write(len(df['hotelName'][0]))
-st.write(len(df2['hotelName'][0]))
-
-st.write("8", df['hotelName'][0], "8")
-st.write("8", df2['hotelName'][0], "8")
+#st.write("8", df['hotelName'][0], "8")
+#st.write("8", df2['hotelName'][0], "8")
 
 st.header("Note:")
 st.write("Eric and Dev both helped with debugging")
