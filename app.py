@@ -17,6 +17,7 @@ import re
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer, util
 import scipy
+import torch
 
 with open("df.pkl" , "rb") as file3:
     df = pkl.load(file3)
@@ -42,64 +43,14 @@ df2['hotelName'] = df2['hotel_name']
 
 df = pd.merge(df,df2)
 
+df['price_per_night'] = df['price_per_night'].fillna("No Price Available")
 
 
-
+# Embeddings
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 model = SentenceTransformer('all-MiniLM-L6-v2')
-
-
 paraphrases = util.paraphrase_mining(model, corpus)
-#query_embeddings_p =  util.paraphrase_mining(model, queries,show_progress_bar=True)
-
-#%%
-
-queries = ['Hotel closest to bridge',
-           'hotel closest to water'
-           ]
-query_embeddings = embedder.encode(queries,show_progress_bar=True)
-
-#%%
-
-# Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
-closest_n = 5
-print("\nTop 5 most similar sentences in corpus:")
-for query, query_embedding in zip(queries, query_embeddings):
-    distances = scipy.spatial.distance.cdist([query_embedding], corpus_embeddings, "cosine")[0]
-
-    results = zip(range(len(distances)), distances)
-    results = sorted(results, key=lambda x: x[1])
-
-    print("\n\n=========================================================")
-    print("==========================Query==============================")
-    print("===",query,"=====")
-    print("=========================================================")
-
-
-    for idx, distance in results[0:closest_n]:
-        print("Score:   ", "(Score: %.4f)" % (1-distance) , "\n" )
-        print("Paragraph:   ", corpus[idx].strip(), "\n" )
-        row_dict = df.loc[df['all_review']== corpus[idx]]
-        print("paper_id:  " , row_dict['hotelName'] , "\n")
-        # print("Title:  " , row_dict["title"][corpus[idx]] , "\n")
-        # print("Abstract:  " , row_dict["abstract"][corpus[idx]] , "\n")
-        # print("Abstract_Summary:  " , row_dict["abstract_summary"][corpus[idx]] , "\n")
-        print("-------------------------------------------")
-
-#%%
-
-from sentence_transformers import SentenceTransformer, util
-import torch
-embedder = SentenceTransformer('all-MiniLM-L6-v2')
-
-corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
-
-#%%
-
-# Query sentences:
-
-
-
+#corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 
 
 st.header("Prague Hotel Finder")
