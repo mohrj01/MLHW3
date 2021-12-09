@@ -87,7 +87,7 @@ queries = ['Hotel closest to bridge',
 st.write("hi")
 user_input = st.text_input("What type of hotel are you searching for?", value="")
 
-query = user_input
+query = str(user_input)
 query_embeddings = embedder.encode(user_input,show_progress_bar=True)
 
 
