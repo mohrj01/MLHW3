@@ -60,6 +60,15 @@ user_input = st.text_input("What type of hotel are you searching for?", value=""
 queries = [str(user_input)]
 query_embeddings = embedder.encode(user_input,show_progress_bar=True)
 
+
+stop_words=list(STOP_WORDS)
+punctuation=punctuation+ '\n'
+def plot_cloud(wordcloud):
+    plt.figure()
+    plt.imshow(wordcloud) 
+    plt.axis("off");
+        
+        
 top_k = min(5, len(corpus))
 for query in queries:
     query_embedding = embedder.encode(query, convert_to_tensor=True)
@@ -68,9 +77,8 @@ for query in queries:
     cos_scores = util.pytorch_cos_sim(query_embedding, corpus_embeddings)[0]
     top_results = torch.topk(cos_scores, k=top_k)
 
-    st.write("\n\n======================\n\n")
-    st.write("Query:", query)
     st.write("\nTop 5 most similar hotels:")
+    st.write("\n\n======================\n\n")
 
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
@@ -83,6 +91,15 @@ for query in queries:
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         st.write("\n\n======================\n\n")
+        
+        
+        wordcloud = WordCloud(stopwords = stop_words).generate(corpus[idx])
+        fig, ax = plt.subplots()
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.axis("off")
+        plt.show()
+        st.pyplot(fig)
+        st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
