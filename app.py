@@ -101,12 +101,12 @@ for query in queries:
 
     st.write("\n\n======================\n\n")
     st.write("Query:", query)
-    st.write("\nTop 5 most similar sentences in corpus:")
+    st.write("\nTop 5 most similar hotels:")
 
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
-        st.write("Hotel Name:  " , row_dict['hotelName'].values[0], "\n")
+        st.write("Hotel Name:  " , row_dict['hotelName'].values[0].str.replace(" Name: hotel_name, dtype: object", ""), "\n")
 
 
 
