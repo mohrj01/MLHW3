@@ -84,7 +84,8 @@ queries = ['Hotel closest to bridge',
 
 
 
-st.write("hi")
+st.header("Prague Hotel Finder")
+st.write("Jessica Mohr | MABA ML HW3" | [Github](%s)" % "https://github.com/mohrj01/MLHW3"))
 user_input = st.text_input("What type of hotel are you searching for?", value="")
 
 queries = [str(user_input)]
