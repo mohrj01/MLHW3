@@ -124,11 +124,11 @@ for query in queries:
     for score, idx in zip(top_results[0], top_results[1]):
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
-        st.write("Hotel Name:  " , row_dict['hotelName'].values[0] , "\n")
+        st.write("Hotel Name:")
         l=[]
         for i in row_dict['hotelName']:
             l.append(i)
-        l[0] = l[0].replace("Name: hotel_name, dtype: object", "")
+        #l[0] = l[0].replace("Name: hotel_name, dtype: object", "")
         st.write(l[0])
         st.write("\n\n======================\n\n")
 
