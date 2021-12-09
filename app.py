@@ -78,9 +78,8 @@ corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 #%%
 
 # Query sentences:
-queries = ['Hotel closest to bridge',
-           'walking distance to water'
-           ]
+df2 = pd.read_csv('https://raw.githubusercontent.com/mohrj01/MLHW3/master/HotelListInPrague.csv')
+df3 = pd.merge(df, df2)
 
 
 
@@ -114,5 +113,5 @@ for query in queries:
         st.write("\n\n======================\n\n")
 
 
-st.table(df.head())
+st.table(df3.head())
 
