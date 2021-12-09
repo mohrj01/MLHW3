@@ -113,7 +113,8 @@ for query in queries:
         st.write("\n\n======================\n\n")
 
 
-        
+
+df['hotelName'] = df['hotelName'].str.replace('\d+', '')
 def myreplace(s):
     for ch in ['Name: hotel_name, dtype: object']:
         s = s.replace(ch, '')
@@ -124,7 +125,8 @@ def myreplace(s):
     return s
 
 df['hotelName'] = df['hotelName'].map(myreplace)
-df2['hotelName'] = df2["Unnamed: 0"].astype(str)+ " " + df2["hotel_name"]
+
+#df2['hotelName'] = df2["Unnamed: 0"].astype(str)+ " " + df2["hotel_name"]
 df3 = pd.merge(df,df2)
 
 st.table(df.head(1))
