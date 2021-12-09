@@ -121,7 +121,7 @@ def myreplace(s):
 
     # remove extra spaces
     s = re.sub(' +', ' ', s)
-    s = s.rstrip()
+    s = s.rstrip().lstrip())
     return s
 
 df['hotelName'] = df['hotelName'].map(myreplace)
@@ -142,4 +142,5 @@ st.write(len(df2['hotelName'][0]))
 st.write("8", df['hotelName'][0], "8")
 st.write("8", df2['hotelName'][0], "8")
 
+st.header("Note:")
 st.write("Eric and Dev both helped with debugging")
