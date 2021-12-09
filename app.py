@@ -139,4 +139,6 @@ st.table(df3.head(1))
 st.write(len(df['hotelName'][0]))
 st.write(len(df2['hotelName'][0]))
 
-st.write("8", df['hotelName'][0], "8")
+st.write("8", df['hotelName'][0].rstrip(), "8")
+
+st.write("Eric and Dev both helped with debugging")
