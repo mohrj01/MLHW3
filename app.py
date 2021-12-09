@@ -121,7 +121,7 @@ def myreplace(s):
 
     # remove extra spaces
     s = re.sub(' +', ' ', s)
-    s = s.rstrip().lstrip())
+    s = s.rstrip().lstrip()
     return s
 
 df['hotelName'] = df['hotelName'].map(myreplace)
