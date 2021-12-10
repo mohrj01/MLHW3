@@ -12,7 +12,7 @@ import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 from collections import Counter
-
+from summarizer.sbert import SBertSummarizer
 
 
 # pickle imports
@@ -63,6 +63,7 @@ def plot_cloud(wordcloud):
     plt.imshow(wordcloud) 
     plt.axis("off");
 
+model = SBertSummarizer('paraphrase-MiniLM-L6-v2')
 
     
 # find the top 5        
@@ -86,10 +87,8 @@ for query in queries:
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
         # summary
-        split_data = row_dict['all_review'].values[0].split()
-        counters = Counter(split_data)
-        most_occur = counters.most_common(4)
-        st.write(most_occur)
+        result = model(row_dict['all_review'].values[0], num_sentences=3)
+        st.write(result)
   #      st.write(model(row_dict['all_review'].values[0], max_length = 60))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         # create word cloud
