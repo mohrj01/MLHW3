@@ -11,6 +11,9 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
+from summarizer import Summarizer
+
+model = Summarizer()
 
 # pickle imports
 with open("df.pkl" , "rb") as file3:
