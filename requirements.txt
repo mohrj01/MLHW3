@@ -11,4 +11,5 @@ gensim
 plotly
 wordcloud
 matplotlib
+summarizer
 
