@@ -11,6 +11,7 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
+import summarizer
 from summarizer import Summarizer
 
 model = Summarizer()
