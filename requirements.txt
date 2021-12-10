@@ -11,5 +11,4 @@ gensim
 plotly
 wordcloud
 matplotlib
-bert_extractive_summarizer
-summarizer
+collections
