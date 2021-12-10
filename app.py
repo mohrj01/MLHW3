@@ -11,8 +11,6 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
-from collections import Counter
-from summarizer.sbert import SBertSummarizer
 
 
 # pickle imports
@@ -63,9 +61,7 @@ def plot_cloud(wordcloud):
     plt.imshow(wordcloud) 
     plt.axis("off");
 
-model_sum = SBertSummarizer('paraphrase-MiniLM-L6-v2')
 
-    
 # find the top 5        
 top_k = min(5, len(corpus))
 for query in queries:
@@ -86,12 +82,6 @@ for query in queries:
             l.append(i)
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
-        # summary
-        #result = model_sum(row_dict['all_review'].values[0], num_sentences=3)
-        #result = ''.join(model_sum(corpus[idx].strip()))
-        result = model_sum(corpus[idx].strip())
-        st.write(result)
-  #      st.write(model(row_dict['all_review'].values[0], max_length = 60))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         # create word cloud
         wordcloud = WordCloud(stopwords = stop_words).generate(corpus[idx])
