@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import summarizer
 from summarizer.sbert import SBertSummarizer
 
-model = SBertSummarizer('paraphrase-MiniLM-L6-v2')
+
 
 # pickle imports
 with open("df.pkl" , "rb") as file3:
@@ -63,7 +63,9 @@ def plot_cloud(wordcloud):
     plt.figure()
     plt.imshow(wordcloud) 
     plt.axis("off");
-        
+
+model = SBertSummarizer('paraphrase-MiniLM-L6-v2')
+    
 # find the top 5        
 top_k = min(5, len(corpus))
 for query in queries:
@@ -84,6 +86,7 @@ for query in queries:
             l.append(i)
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
+        st.write(row_dict['all_review'].values[0], num_sentences = 3)
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         # create word cloud
         wordcloud = WordCloud(stopwords = stop_words).generate(corpus[idx])
