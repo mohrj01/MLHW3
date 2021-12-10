@@ -12,3 +12,4 @@ plotly
 wordcloud
 matplotlib
 bert-extractive-summarizer
+summarizer
