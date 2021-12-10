@@ -86,7 +86,7 @@ for query in queries:
             l.append(i)
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
-        st.write(row_dict['all_review'].values[0], num_sentences = 3)
+        st.write(model(row_dict['all_review'].values[0], num_sentences = 3))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         # create word cloud
         wordcloud = WordCloud(stopwords = stop_words).generate(corpus[idx])
