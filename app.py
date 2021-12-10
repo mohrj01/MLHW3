@@ -63,7 +63,7 @@ def plot_cloud(wordcloud):
     plt.imshow(wordcloud) 
     plt.axis("off");
 
-model = SBertSummarizer('paraphrase-MiniLM-L6-v2')
+model_sum = SBertSummarizer('paraphrase-MiniLM-L6-v2')
 
     
 # find the top 5        
@@ -87,7 +87,7 @@ for query in queries:
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
         # summary
-        result = model(row_dict['all_review'].values[0], num_sentences=3)
+        result = model_sum(row_dict['all_review'].values[0], num_sentences=3)
         st.write(result)
   #      st.write(model(row_dict['all_review'].values[0], max_length = 60))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
