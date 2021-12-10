@@ -89,7 +89,7 @@ for query in queries:
         # summary
         #result = model_sum(row_dict['all_review'].values[0], num_sentences=3)
         #result = ''.join(model_sum(corpus[idx].strip()))
-        result = model(sum(corpus[idx].strip()))
+        result = model_sum(corpus[idx].strip())
         st.write(result)
   #      st.write(model(row_dict['all_review'].values[0], max_length = 60))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
