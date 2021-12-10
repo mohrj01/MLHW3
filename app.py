@@ -11,8 +11,7 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
-import summarizer
-from summarizer import Summarizer
+from collections import Counter
 
 
 
@@ -86,6 +85,11 @@ for query in queries:
             l.append(i)
         st.write("Hotel Name: ", l[0])
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
+        # summary
+        split_data = row_dict['all_review'].values[0].split()
+        counters = Counter(split_data)
+        most_occur = counters.most_common(4)
+        st.write(most_occur)
   #      st.write(model(row_dict['all_review'].values[0], max_length = 60))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
         # create word cloud
