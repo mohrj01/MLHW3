@@ -63,7 +63,7 @@ def plot_cloud(wordcloud):
     plt.imshow(wordcloud) 
     plt.axis("off");
 
-model = Summarizer()
+
     
 # find the top 5        
 top_k = min(5, len(corpus))
