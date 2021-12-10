@@ -88,6 +88,7 @@ for query in queries:
         st.write("Price Per Night: ", row_dict['price_per_night'].values[0])
         # summary
         result = model_sum(row_dict['all_review'].values[0], num_sentences=3)
+        result = ''.join(model_sum(corpus[idx].strip()))
         st.write(result)
   #      st.write(model(row_dict['all_review'].values[0], max_length = 60))
         st.write("[Link to Hotel](%s)" % row_dict['url'].values[0])
