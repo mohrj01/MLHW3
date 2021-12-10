@@ -93,4 +93,4 @@ for query in queries:
         st.write("\n\n======================\n\n")
 
 st.header("Note:")
-st.write("Eric and Dev both helped with debugging")
+st.write("Eric and Dev both helped with debugging the requirements/pickling sections.")
