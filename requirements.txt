@@ -11,3 +11,4 @@ gensim
 plotly
 wordcloud
 matplotlib
+bert-extractive-summarizer
