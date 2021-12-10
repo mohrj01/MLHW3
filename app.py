@@ -12,9 +12,9 @@ import torch
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import summarizer
-from summarizer import Summarizer
+from summarizer.sbert import SBertSummarizer
 
-model = Summarizer()
+model = SBertSummarizer('paraphrase-MiniLM-L6-v2')
 
 # pickle imports
 with open("df.pkl" , "rb") as file3:
